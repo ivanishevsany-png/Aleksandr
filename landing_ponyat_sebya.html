@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Понять себя — изменить всё | Александр Иванищев</title>
+<style>
+:root{
+  --navy:#1C2B5E;--navy-dk:#131f48;--gold:#C9A227;--gold-lt:#e8c96e;
+  --graph:#2B2B2B;--fog:#7A8599;--beige:#F5F3EE;--cream:#FDFCF9;--border:#E8E4DC;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,'Segoe UI','Helvetica Neue',Arial,sans-serif;color:var(--graph);background:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:400;line-height:1.2}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+.s{padding:88px 0}.s-sm{padding:52px 0}
+.badge{display:inline-flex;align-items:center;border:1px solid var(--gold);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:20px}
+.stitle{font-size:clamp(28px,4vw,44px);color:var(--navy);margin-bottom:14px}
+.ssub{font-size:17px;color:var(--fog);max-width:560px;line-height:1.7}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 34px;border-radius:4px;font-size:15px;font-weight:700;text-decoration:none;transition:all .18s;cursor:pointer;border:none}
+.btn-gold{background:var(--gold);color:var(--navy)}.btn-gold:hover{background:var(--gold-lt)}
+.btn-navy{background:var(--navy);color:white}.btn-navy:hover{background:var(--navy-dk)}
+.btn-ol{border:1.5px solid rgba(255,255,255,.4);color:rgba(255,255,255,.85);background:transparent}.btn-ol:hover{border-color:white;color:white}
+.btn-gh{border:1.5px solid var(--border);color:var(--navy);background:transparent}.btn-gh:hover{border-color:var(--navy)}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-in{max-width:1120px;margin:0 auto;padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:Georgia,serif;font-size:17px;color:white;text-decoration:none}
+.nav-logo em{color:var(--gold);font-style:normal}
+.nav-ul{display:flex;gap:28px;list-style:none}
+.nav-ul a{font-size:13.5px;color:rgba(255,255,255,.65);text-decoration:none;transition:color .15s}.nav-ul a:hover{color:white}
+.nav-cta{background:var(--gold);color:var(--navy);padding:8px 22px;border-radius:4px;font-size:13.5px;font-weight:700;text-decoration:none;transition:background .15s}.nav-cta:hover{background:var(--gold-lt)}
+@media(max-width:700px){.nav-ul{display:none}}
+
+/* HERO */
+.hero{background:var(--navy);padding:96px 0 80px;text-align:center}
+.hero-ey{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:28px}
+.hero h1{font-size:clamp(44px,6.5vw,76px);color:white;font-weight:400;margin-bottom:28px;line-height:1.1}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-rule{width:52px;height:2px;background:var(--gold);margin:0 auto 28px}
+.hero-sub{font-size:18px;color:rgba(255,255,255,.68);max-width:580px;margin:0 auto 44px;line-height:1.7}
+.btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-ft{margin-top:32px;font-size:13px;color:rgba(255,255,255,.28)}
+
+/* PROOF */
+.proof{background:var(--beige);padding:28px 0}
+.proof-row{display:flex;justify-content:center;gap:56px;flex-wrap:wrap}
+.proof-n{font-family:Georgia,serif;font-size:30px;color:var(--navy);line-height:1}
+.proof-l{font-size:12px;color:var(--fog);margin-top:4px;text-align:center}
+
+/* PAIN */
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:48px}
+.pain-card{background:white;border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:24px 22px}
+.pain-h{font-weight:600;font-size:15px;color:var(--navy);margin-bottom:8px}
+.pain-b{font-size:13.5px;color:var(--fog);line-height:1.65}
+.pain-pu{text-align:center;margin-top:44px;font-family:Georgia,serif;font-size:20px;color:var(--navy)}
+
+/* ARCH (signature) */
+.arch{background:var(--navy-dk);padding:88px 0}
+.arch .stitle{color:white}
+.arch .ssub{color:rgba(255,255,255,.55)}
+.arch-diag{display:flex;align-items:stretch;margin-top:52px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.arch-cell{flex:1;padding:32px 24px;border-right:1px solid rgba(255,255,255,.08);transition:background .2s}
+.arch-cell:last-child{border-right:none}
+.arch-cell:hover{background:rgba(255,255,255,.04)}
+.arch-layer{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:700}
+.arch-icon{font-size:34px;margin-bottom:14px;display:block}
+.arch-name{font-family:Georgia,serif;font-size:19px;color:white;margin-bottom:10px}
+.arch-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.65}
+.arch-tag{margin-top:16px;display:inline-block;border:1px solid rgba(201,162,39,.4);color:var(--gold);font-size:11px;padding:3px 10px;border-radius:20px}
+@media(max-width:768px){.arch-diag{flex-direction:column}.arch-cell{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}.arch-cell:last-child{border-bottom:none}}
+
+/* SYSTEMS */
+.systems{background:var(--beige)}
+.sys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:48px}
+.sys-card{background:white;border:1px solid var(--border);border-radius:8px;padding:28px 22px}
+.sys-num{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+.sys-name{font-family:Georgia,serif;font-size:19px;color:var(--navy);margin-bottom:10px}
+.sys-body{font-size:13.5px;color:var(--fog);line-height:1.65}
+
+/* MODULES */
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px}
+.mod-card{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--border);border-radius:8px;padding:20px 22px;background:white}
+.mod-card.fin{grid-column:1/-1;border-color:var(--gold);background:linear-gradient(to right,#fffae6,white)}
+.mod-num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:Georgia,serif;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mod-card.fin .mod-num{background:var(--gold);color:var(--navy)}
+.mod-name{font-weight:600;font-size:14.5px;color:var(--navy);margin-bottom:5px}
+.mod-desc{font-size:13px;color:var(--fog);line-height:1.55}
+@media(max-width:640px){.mod-grid{grid-template-columns:1fr}}
+
+/* WHOM */
+.whom{background:var(--beige)}
+.whom-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.whom-card{background:white;border:1px solid var(--border);border-radius:8px;padding:28px 22px}
+.whom-icon{font-size:32px;margin-bottom:14px;display:block}
+.whom-title{font-family:Georgia,serif;font-size:18px;color:var(--navy);margin-bottom:10px}
+.whom-pain{font-size:13.5px;color:var(--fog);margin-bottom:14px;line-height:1.6}
+.whom-hook{font-size:13.5px;font-weight:600;color:var(--navy)}
+@media(max-width:640px){.whom-grid{grid-template-columns:1fr}}
+
+/* AUTHOR */
+.author-grid{display:grid;grid-template-columns:280px 1fr;gap:64px;align-items:start;margin-top:48px}
+.author-photo{border-radius:12px;aspect-ratio:3/4;background:var(--beige);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--fog);font-size:14px;padding:24px;border:1px dashed var(--border)}
+.author-name{font-family:Georgia,serif;font-size:32px;color:var(--navy);margin-bottom:6px}
+.author-role{font-size:15px;color:var(--gold);font-weight:600;margin-bottom:24px}
+.author-bio{font-size:15.5px;color:var(--graph);line-height:1.8;margin-bottom:10px}
+.author-ul{list-style:none;margin-top:20px}
+.author-ul li{padding:9px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--fog);display:flex;gap:10px}
+.author-ul li::before{content:'→';color:var(--gold);flex-shrink:0}
+@media(max-width:640px){.author-grid{grid-template-columns:1fr}.author-photo{max-width:200px;margin:0 auto}}
+
+/* RESULTS */
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:48px;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.res{padding:28px 24px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:white}
+.res:nth-child(3n){border-right:none}
+.res:nth-last-child(-n+3){border-bottom:none}
+.res-icon{font-size:26px;margin-bottom:12px;display:block}
+.res-name{font-weight:600;font-size:14.5px;color:var(--navy);margin-bottom:6px}
+.res-text{font-size:13px;color:var(--fog);line-height:1.55}
+@media(max-width:640px){.results-grid{grid-template-columns:1fr}.res{border-right:none!important}}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.testi-card{background:white;border:1px solid var(--border);border-radius:8px;padding:24px 22px}
+.testi-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:14px}
+.testi-q{font-size:14px;color:var(--graph);line-height:1.75;font-style:italic;margin-bottom:18px}
+.testi-name{font-size:13.5px;font-weight:600;color:var(--navy)}
+.testi-role{font-size:12px;color:var(--fog);margin-top:2px}
+@media(max-width:640px){.testi-grid{grid-template-columns:1fr}}
+
+/* PRICING */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.price-card{background:white;border:1px solid var(--border);border-radius:12px;padding:32px 28px}
+.price-card.feat{border:2px solid var(--navy)}
+.price-lb{font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--navy);color:white;display:inline-block;padding:3px 10px;border-radius:4px;margin-bottom:16px;font-weight:700}
+.price-name{font-family:Georgia,serif;font-size:22px;color:var(--navy);margin-bottom:8px}
+.price-val{font-family:Georgia,serif;font-size:38px;color:var(--navy);margin-bottom:4px;line-height:1}
+.price-per{font-size:13px;color:var(--fog);margin-bottom:24px}
+.price-ul{list-style:none;margin-bottom:28px}
+.price-ul li{padding:8px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--graph);display:flex;gap:8px}
+.price-ul li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
+.price-btn{display:block;text-align:center;padding:14px;border-radius:4px;text-decoration:none;font-weight:700;font-size:14.5px;transition:all .18s}
+.pb-pr{background:var(--navy);color:white}.pb-pr:hover{background:var(--navy-dk)}
+.pb-gh{border:1.5px solid var(--navy);color:var(--navy)}.pb-gh:hover{background:var(--beige)}
+.price-note{text-align:center;margin-top:22px;font-size:13.5px;color:var(--fog)}
+.price-note a{color:var(--navy);font-weight:600;text-decoration:none}
+@media(max-width:640px){.price-grid{grid-template-columns:1fr}}
+
+/* LEAD + CTA */
+.ld{background:var(--navy-dk);text-align:center}
+.ld .stitle{color:white}
+.ld p{color:rgba(255,255,255,.6);font-size:16.5px;max-width:500px;margin:0 auto 36px}
+.cta-fin{background:var(--navy-dk);text-align:center}
+.cta-fin h2{font-size:clamp(28px,4vw,48px);color:white;margin-bottom:14px}
+.cta-fin p{color:rgba(255,255,255,.6);font-size:17px;max-width:480px;margin:0 auto 40px}
+
+/* FAQ */
+.faq-wrap{margin-top:48px;max-width:720px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;padding:20px 0;display:flex;justify-content:space-between;align-items:center;font-family:inherit;font-size:15.5px;font-weight:600;color:var(--navy);text-align:left;gap:12px;transition:color .15s}
+.faq-q:hover{color:var(--gold)}
+.faq-q .ic{color:var(--gold);font-size:22px;flex-shrink:0;transition:transform .2s;line-height:1}
+.faq-a{font-size:14.5px;color:var(--fog);line-height:1.75;padding-bottom:20px;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .ic{transform:rotate(45deg)}
+
+/* FOOTER */
+.footer{background:var(--navy-dk);border-top:1px solid rgba(255,255,255,.07);padding:28px 0}
+.foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-logo{font-family:Georgia,serif;font-size:16px;color:rgba(255,255,255,.7);text-decoration:none}
+.foot-logo em{color:var(--gold);font-style:normal}
+.foot-nav{display:flex;gap:20px}
+.foot-nav a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}.foot-nav a:hover{color:rgba(255,255,255,.7)}
+.foot-copy{font-size:12px;color:rgba(255,255,255,.25)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-in">
+    <a class="nav-logo" href="#">Александр <em>Иванищев</em></a>
+    <ul class="nav-ul">
+      <li><a href="#about">О программе</a></li>
+      <li><a href="#modules">Модули</a></li>
+      <li><a href="#author">Автор</a></li>
+      <li><a href="#pricing">Тарифы</a></li>
+    </ul>
+    <a class="nav-cta" href="#pricing">Войти в программу</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <p class="hero-ey">Авторская коучинговая программа · Александр Иванищев</p>
+    <h1>Понять себя —<br><em>изменить всё</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Система из 4 психологических традиций, которая объясняет, почему предыдущие попытки роста не работали — и как запустить реальные изменения</p>
+    <div class="btn-row">
+      <a class="btn btn-gold" href="#pricing">Войти в пилотную группу →</a>
+      <a class="btn btn-ol" href="#lead">Бесплатный урок</a>
+    </div>
+    <p class="hero-ft">t.me/mirovozzrenierosta · Аудиокнига на LitRes</p>
+  </div>
+</header>
+
+<!-- PROOF BAR -->
+<div class="proof">
+  <div class="wrap">
+    <div class="proof-row">
+      <div><div class="proof-n">7+</div><div class="proof-l">лет практики</div></div>
+      <div><div class="proof-n">4</div><div class="proof-l">системы в одной логике</div></div>
+      <div><div class="proof-n">19</div><div class="proof-l">рабочих документов</div></div>
+      <div><div class="proof-n">7</div><div class="proof-l">модулей программы</div></div>
+      <div><div class="proof-n" style="font-family:Georgia,serif;font-size:22px;line-height:1.4">LitRes</div><div class="proof-l">аудиокнига</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section class="s" id="about" style="background:var(--cream)">
+  <div class="wrap">
+    <span class="badge">Это про тебя?</span>
+    <h2 class="stitle">Ты знаешь — но не меняешь</h2>
+    <p class="ssub">Хотя бы одно звучит знакомо — ты попал(а) в нужное место</p>
+    <div class="pain-grid">
+      <div class="pain-card"><p class="pain-h">«Знаю много теорий»</p><p class="pain-b">Книги, курсы, подкасты — всё знакомо. Но жизнь особо не меняется. Знание не переходит в действие.</p></div>
+      <div class="pain-card"><p class="pain-h">«Пробовал — не работает»</p><p class="pain-b">Эффект от терапии или курсов был — но временный. Через месяц всё возвращается на свои места.</p></div>
+      <div class="pain-card"><p class="pain-h">«Деньги не растут»</p><p class="pain-b">Навыки есть. Но что-то держит — невидимый потолок, который не пробивается усилием воли.</p></div>
+      <div class="pain-card"><p class="pain-h">«Вижу блок — не могу снять»</p><p class="pain-b">Понимаешь что мешает, можешь назвать — но не можешь остановить. Что-то внутри сильнее.</p></div>
+    </div>
+    <p class="pain-pu">Дело не в мотивации и не в знаниях. Дело в конфигурации.</p>
+  </div>
+</section>
+
+<!-- ARCH — signature block -->
+<section class="s arch">
+  <div class="wrap">
+    <span class="badge">Авторская метафора</span>
+    <h2 class="stitle">Ты устроен(а) как компьютер</h2>
+    <p class="ssub">Большинство курсов меняют программы — не зная, какой здесь процессор и какая стоит ОС</p>
+    <div class="arch-diag">
+      <div class="arch-cell">
+        <div class="arch-layer">Слой 1 · Железо</div>
+        <span class="arch-icon">⚙️</span>
+        <div class="arch-name">Процессор</div>
+        <div class="arch-desc">Нейрофизиологический тип. Врождённая природа нервной системы — как ты реагируешь, думаешь, восстанавливаешься.</div>
+        <span class="arch-tag">7 Радикалов</span>
+      </div>
+      <div class="arch-cell">
+        <div class="arch-layer">Слой 2 · ОС</div>
+        <span class="arch-icon">💻</span>
+        <div class="arch-name">Операционная система</div>
+        <div class="arch-desc">Уровень сознания и мировоззрение. Через него ты воспринимаешь любой инструмент развития. Хорошие методики «не заходят» — потому что ОС другая.</div>
+        <span class="arch-tag">Спиральная динамика</span>
+      </div>
+      <div class="arch-cell">
+        <div class="arch-layer">Слой 3 · Природа</div>
+        <span class="arch-icon">🧬</span>
+        <div class="arch-name">Тип личности</div>
+        <div class="arch-desc">Предназначение и врождённая стратегия. Перестаёшь ломать себя под чужие модели — начинаешь строить под свою.</div>
+        <span class="arch-tag">Ведические типы</span>
+      </div>
+      <div class="arch-cell">
+        <div class="arch-layer">Слой 4 · Программы</div>
+        <span class="arch-icon">📱</span>
+        <div class="arch-name">Убеждения и деньги</div>
+        <div class="arch-desc">Ограничивающие паттерны, финансовые «контракты», скрытые выгоды. То, что поддаётся переустановке — но только после слоёв 1–3.</div>
+        <span class="arch-tag">Финансовая психология</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 SYSTEMS -->
+<section class="s systems">
+  <div class="wrap">
+    <span class="badge">Методология</span>
+    <h2 class="stitle">4 системы — одна последовательность</h2>
+    <p class="ssub">Каждая традиция по отдельности существует. Вместе в одной логике — нет больше нигде</p>
+    <div class="sys-grid">
+      <div class="sys-card"><div class="sys-num">Система 01</div><div class="sys-name">Ведические психофизиотипы</div><div class="sys-body">Брахман, Кшатрий, Вайшья, Шудра — врождённая природа и стратегия жизни. Понимаешь, кто ты по сути, а не только по навыкам.</div></div>
+      <div class="sys-card"><div class="sys-num">Система 02</div><div class="sys-name">7 Радикалов Пономаренко</div><div class="sys-body">Нейрофизиологический фундамент характера. Объясняет биологию, а не просто поведение — почему ты именно такой(ая).</div></div>
+      <div class="sys-card"><div class="sys-num">Система 03</div><div class="sys-name">Спиральная динамика</div><div class="sys-body">Уровень сознания как фильтр. Объясняет, почему «не заходят» хорошие методики и что нужно изменить, чтобы они заработали.</div></div>
+      <div class="sys-card"><div class="sys-num">Система 04</div><div class="sys-name">Финансовая психология</div><div class="sys-body">7 деструктивных «контрактов» с деньгами, скрытые выгоды бедности. Почему знания о финансах есть — а доход не растёт.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="s" id="modules" style="background:var(--cream)">
+  <div class="wrap">
+    <span class="badge">Структура программы</span>
+    <h2 class="stitle">7 модулей — одна дуга</h2>
+    <p class="ssub">От диагностики через понимание — к конкретному плану действий на 90 дней</p>
+    <div class="mod-grid">
+      <div class="mod-card"><div class="mod-num">0</div><div><div class="mod-name">Точка старта — диагностика</div><div class="mod-desc">Колесо жизни по 8 сферам, стартовая анкета, коучинговый контракт. Видишь, где находишься сейчас.</div></div></div>
+      <div class="mod-card"><div class="mod-num">1</div><div><div class="mod-name">Конструкция личности</div><div class="mod-desc">Ведические типы, 7 радикалов, репрезентативные системы ВАКД. Биологический фундамент — кто ты по природе.</div></div></div>
+      <div class="mod-card"><div class="mod-num">2</div><div><div class="mod-name">Мировоззрение как ОС</div><div class="mod-desc">Спиральная динамика — диагностика уровня сознания и карта перехода на следующий этаж.</div></div></div>
+      <div class="mod-card"><div class="mod-num">3</div><div><div class="mod-name">Ментальные ограничения</div><div class="mod-desc">Синдром самозванца, трансгенерационные паттерны, генограмма трёх поколений. Откуда берётся то, что держит.</div></div></div>
+      <div class="mod-card"><div class="mod-num">4</div><div><div class="mod-name">Финансовая психология</div><div class="mod-desc">7 деструктивных контрактов, вторичные выгоды бедности, переустановка финансового мышления.</div></div></div>
+      <div class="mod-card"><div class="mod-num">5</div><div><div class="mod-name">Отношения и коммуникация</div><div class="mod-desc">Взаимозависимость vs созависимость, стили привязанности, метод третьего лица в конфликте.</div></div></div>
+      <div class="mod-card fin"><div class="mod-num">★</div><div><div class="mod-name">Финал · Мой новый вектор</div><div class="mod-desc">OKR на 90 дней по трём зонам, практики саморегуляции, контракт с собой. Уходишь не с осознанием — а с планом.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="s whom">
+  <div class="wrap">
+    <span class="badge">Для кого</span>
+    <h2 class="stitle">Осознанные люди 30–45 лет</h2>
+    <p class="ssub">Которые хотят не просто понять себя — а изменить жизнь реально</p>
+    <div class="whom-grid">
+      <div class="whom-card"><span class="whom-icon">💼</span><div class="whom-title">Предприниматели</div><div class="whom-pain">Хотят роста, но чувствуют невидимый потолок. Зарабатывают — но что-то держит от следующего уровня.</div><div class="whom-hook">→ Снятие внутренних ограничений</div></div>
+      <div class="whom-card"><span class="whom-icon">🎯</span><div class="whom-title">Наёмные специалисты</div><div class="whom-pain">Есть должность и стабильность — но жизнь не соответствует ожиданиям. Нет ощущения своего пути.</div><div class="whom-hook">→ Стратегия роста и уверенность</div></div>
+      <div class="whom-card"><span class="whom-icon">🔓</span><div class="whom-title">Те, кто чувствует блок</div><div class="whom-pain">Видят цель, понимают что делать — но не могут двигаться. Скрытые ограничения мощнее воли.</div><div class="whom-hook">→ Разблокировка и конкретные шаги</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="s" id="author" style="background:var(--cream)">
+  <div class="wrap">
+    <span class="badge">Автор программы</span>
+    <div class="author-grid">
+      <div>
+        <div class="author-photo">
+          <span style="font-size:40px">📸</span>
+          <span style="margin-top:16px;font-size:13px">Твоя фотография<br><span style="color:#bbb;font-size:12px">3:4, профессиональная</span></span>
+        </div>
+      </div>
+      <div>
+        <div class="author-name">Александр Иванищев</div>
+        <div class="author-role">Психолог-коуч · Автор методологии</div>
+        <p class="author-bio">Психолог-коуч с 7+ летним стажем практики. Специализируюсь на финансовой психологии и личностном росте. Создаю авторские методики, которые работают на уровне причины — не симптома.</p>
+        <p class="author-bio">Ключевая идея: человек устроен как компьютер. Только собрав правильную конфигурацию из четырёх систем — он становится расслабленным, эффективным и счастливым.</p>
+        <ul class="author-ul">
+          <li>7+ лет практики в индивидуальном и групповом коучинге</li>
+          <li>Авторская методология — синтез 4 психологических традиций</li>
+          <li>Аудиокнига на платформе LitRes (selfpub.ru)</li>
+          <li>Telegram-канал t.me/mirovozzrenierosta</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="s" style="background:var(--beige)">
+  <div class="wrap">
+    <span class="badge">Что ты получишь</span>
+    <h2 class="stitle">Конкретные материалы и результаты</h2>
+    <div class="results-grid">
+      <div class="res"><span class="res-icon">📋</span><div class="res-name">19 профессиональных воркбуков</div><div class="res-text">Диагностические таблицы, практикумы и рабочие тетради — в едином фирменном стиле</div></div>
+      <div class="res"><span class="res-icon">🎧</span><div class="res-name">6 авторских аудиолекций</div><div class="res-text">«Железо и Софт», «7 радикалов», «Спиральная динамика» — и другие</div></div>
+      <div class="res"><span class="res-icon">🧭</span><div class="res-name">OKR-план на 90 дней</div><div class="res-text">По трём зонам: личность, деньги, отношения. С контрактом с собой.</div></div>
+      <div class="res"><span class="res-icon">🗺️</span><div class="res-name">Генограмма семейных паттернов</div><div class="res-text">Три поколения сценариев и упражнение «Письмо предку»</div></div>
+      <div class="res"><span class="res-icon">⚡</span><div class="res-name">6 практик саморегуляции</div><div class="res-text">Дыхание 4-7-8, якоря, STOP, заземление — пошаговые инструкции</div></div>
+      <div class="res"><span class="res-icon">💡</span><div class="res-name">Понимание своей конфигурации</div><div class="res-text">Тип + радикал + уровень СД + финансовые паттерны в одной карте</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="s" style="background:var(--cream)">
+  <div class="wrap">
+    <span class="badge">Участники о программе</span>
+    <h2 class="stitle">Что говорят после прохождения</h2>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-q">«Впервые получила не просто осознание — а понимание механизма. Узнала свой радикал — и многое встало на место. Финансовые блоки начали отпускать после модуля 4.»</div><div class="testi-name">Екатерина П.</div><div class="testi-role">Предприниматель, 38 лет</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-q">«Спиральная динамика перевернула взгляд на отношения в команде. Перестал пытаться "починить" людей — начал понимать, с какого уровня они говорят. Стало легче.»</div><div class="testi-name">Михаил Т.</div><div class="testi-role">Руководитель, 41 год</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-q">«Генограмма — неожиданно и мощно. Увидела паттерн "деньги уходят" в трёх поколениях. Сейчас пишу новый сценарий — и он ощущается реальным, а не wishful thinking.»</div><div class="testi-name">Наталья В.</div><div class="testi-role">Психолог, 34 года</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="s" id="pricing" style="background:var(--beige)">
+  <div class="wrap">
+    <span class="badge">Тарифы</span>
+    <h2 class="stitle">Выбери свой формат</h2>
+    <p class="ssub">Средний чек на рынке — 13 737 ₽. Ты получаешь систему из 4 методологий.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-name">Пилот</div>
+        <div class="price-val">4 900 ₽</div>
+        <div class="price-per">3–5 групповых встреч · 10–15 человек</div>
+        <ul class="price-ul">
+          <li>Модули 0–2 (Диагностика + Конструкция + ОС)</li>
+          <li>Стартовая анкета и колесо жизни</li>
+          <li>Онлайн-встречи в группе</li>
+          <li>Рабочие документы к каждой теме</li>
+        </ul>
+        <a class="price-btn pb-gh" href="https://t.me/mirovozzrenierosta">Записаться в пилот</a>
+      </div>
+      <div class="price-card feat">
+        <div class="price-lb">Основной продукт</div>
+        <div class="price-name">Полный курс</div>
+        <div class="price-val">9 900 ₽</div>
+        <div class="price-per">Все 7 модулей · Своим темпом · Навсегда</div>
+        <ul class="price-ul">
+          <li>Все 7 модулей программы</li>
+          <li>19 профессиональных воркбуков</li>
+          <li>6 авторских аудиолекций</li>
+          <li>OKR-план на 90 дней</li>
+          <li>Генограмма + трансгенерация</li>
+          <li>6 практик саморегуляции</li>
+        </ul>
+        <a class="price-btn pb-pr" href="https://t.me/mirovozzrenierosta">Получить курс</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Курс + группа</div>
+        <div class="price-val">16 900 ₽</div>
+        <div class="price-per">С живой поддержкой · 4–6 разборов</div>
+        <ul class="price-ul">
+          <li>Всё из «Полного курса»</li>
+          <li>4–6 групповых живых сессий</li>
+          <li>Чат участников с куратором</li>
+          <li>Поддерживающая сессия через 30 дней</li>
+        </ul>
+        <a class="price-btn pb-gh" href="https://t.me/mirovozzrenierosta">Войти в группу</a>
+      </div>
+    </div>
+    <p class="price-note">Индивидуальное сопровождение (25 000–40 000 ₽) — <a href="https://t.me/mirovozzrenierosta">напиши в Telegram</a></p>
+  </div>
+</section>
+
+<!-- LEAD MAGNET -->
+<section class="s ld" id="lead">
+  <div class="wrap">
+    <span class="badge">Бесплатно</span>
+    <h2 class="stitle">Начни с аудиолекции</h2>
+    <p>«7 радикалов и биология нашего характера» — объясняет твою нейрофизиологическую природу за 30 минут</p>
+    <a class="btn btn-gold" href="https://t.me/mirovozzrenierosta">Получить бесплатный урок →</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="s" style="background:var(--cream)">
+  <div class="wrap">
+    <span class="badge">Вопросы и ответы</span>
+    <h2 class="stitle">Часто спрашивают</h2>
+    <div class="faq-wrap">
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Нужна ли психологическая подготовка?<span class="ic">+</span></button><div class="faq-a">Нет. Программа рассчитана на людей без специального образования — всё объясняется с нуля. Если ты психолог или коуч — материал даст новые инструменты для практики.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Чем это отличается от обычного курса по саморазвитию?<span class="ic">+</span></button><div class="faq-a">Большинство курсов используют одну типологию. Здесь — четыре взаимодополняющие системы в единой последовательности. Программа начинает с нейропластичности и заканчивается конкретным планом OKR. Это не вдохновение — это инженерный подход.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Сколько времени нужно в неделю?<span class="ic">+</span></button><div class="faq-a">При самостоятельном прохождении — 3–5 часов в неделю: материалы + аудио + практические задания. Групповой формат добавляет 1–2 часа на созвоны.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Остаётся ли доступ к материалам после окончания?<span class="ic">+</span></button><div class="faq-a">Да — все воркбуки (PDF) и аудиолекции остаются у тебя навсегда.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Как попасть в пилотную группу?<span class="ic">+</span></button><div class="faq-a">Напиши в Telegram t.me/mirovozzrenierosta. Пилот проходит для группы 10–15 человек — места ограничены.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="s cta-fin">
+  <div class="wrap">
+    <h2>Готов(а) начать?</h2>
+    <p>Курс содержательно готов. Пилотная группа открыта. Первый шаг занимает 2 минуты.</p>
+    <div class="btn-row">
+      <a class="btn btn-gold" href="#pricing">Выбрать тариф →</a>
+      <a class="btn btn-ol" href="https://t.me/mirovozzrenierosta">Написать в Telegram</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-in">
+      <a class="foot-logo" href="#">Александр <em>Иванищев</em></a>
+      <nav class="foot-nav">
+        <a href="#about">О программе</a>
+        <a href="#modules">Модули</a>
+        <a href="#pricing">Тарифы</a>
+        <a href="https://t.me/mirovozzrenierosta">Telegram</a>
+      </nav>
+      <p class="foot-copy">«Понять себя — изменить всё» · 2026</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function faq(btn){
+  const it=btn.closest('.faq-item');
+  const was=it.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!was)it.classList.add('open');
+}
+</script>
+</body>
+</html>
